@@ -54,7 +54,7 @@ util.inherits(Crc32CStream, stream.Writable)
  * @param {Number} [initialCrc=0] An optional initial CRC
  * @constructor
  */
-function Crc32C(input, initialCrc) {
+function Crc32C_(input, initialCrc) {
   this.crc32c = initialCrc || 0;
   if (input) this.update(input);
 }
@@ -66,7 +66,7 @@ function Crc32C(input, initialCrc) {
  * @param input Additional input to calculate the CRC for
  * @returns {Crc32C}
  */
-Crc32C.prototype.update = function(input) {
+ Crc32C_.prototype.update = function(input) {
   this.crc32c = module.exports.calculate(input, this.crc32c);
   return this;
 };
@@ -77,7 +77,7 @@ Crc32C.prototype.update = function(input) {
  *
  * @returns {Number}
  */
-Crc32C.prototype.crc = function() {
+ Crc32C_.prototype.crc = function() {
   return this.crc32c;
 };
 
@@ -89,7 +89,7 @@ Crc32C.prototype.crc = function() {
 module.exports = {
   fromStream: function (stream, crc) { return stream.pipe(new Crc32CStream(crc)) },
   calculate: Crc32C.hardware_support ? Crc32C.sse42_crc : Crc32C.table_crc,
-  CRC32: Crc32C,
+  CRC32: Crc32C_,
 }
 
 // for debugging/benchmarks
